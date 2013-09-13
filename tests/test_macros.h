@@ -1,5 +1,5 @@
-#ifndef test_macros_h
-#define test_macros_h
+#ifndef _test_macros_h
+#define _test_macros_h
 
 #define RED "\x1B[31m"
 #define GREEN "\x1B[32m"

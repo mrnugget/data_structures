@@ -1,5 +1,5 @@
-#ifndef benchmark_macros_h
-#define benchmark_macros_h
+#ifndef _benchmark_macros_h
+#define _benchmark_macros_h
 
 #include <time.h>
 #include <unistd.h>

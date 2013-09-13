@@ -1,5 +1,6 @@
 #include <stdlib.h>
 
+#include "debug.h"
 #include "array.h"
 
 struct dynarray *Array_new(size_t initial_size)

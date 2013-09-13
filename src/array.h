@@ -1,9 +1,5 @@
-#ifndef array_h
-#define array_h
-
-#include <stdio.h>
-
-#define check(A, B, ...) if(!(A)) { fprintf(stderr, B, ##__VA_ARGS__); goto error; }
+#ifndef _array_h
+#define _array_h
 
 struct dynarray {
     int length;
