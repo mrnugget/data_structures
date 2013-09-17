@@ -70,6 +70,8 @@ char *test_array_pop()
 
 char *test_array_shift()
 {
+    test_assert(a->length == 0, "Array is not empty");
+
     Array_shift(a, one);
     test_assert(a->length == 1, "Array length is not 1");
     test_assert(strcmp((char *)Array_first(a), one) == 0, "Wrong first element: one");
@@ -81,6 +83,27 @@ char *test_array_shift()
     Array_shift(a, three);
     test_assert(a->length == 3, "Array length is not 3");
     test_assert(strcmp((char *)Array_first(a), three) == 0, "Wrong second element: three");
+
+    test_assert(strcmp((char *)a->elements[0], three) == 0, "Wrong element: three");
+    test_assert(strcmp((char *)a->elements[1], two) == 0, "Wrong element: two");
+    test_assert(strcmp((char *)a->elements[2], one) == 0, "Wrong element: one");
+
+    return NULL;
+}
+
+char *test_array_unshift()
+{
+    char *unshifted = Array_unshift(a);
+    test_assert(a->length == 2, "Array length is not 2");
+    test_assert(strcmp((char *)unshifted, three) == 0, "Wrong unshifted element: three");
+
+    unshifted = Array_unshift(a);
+    test_assert(a->length == 1, "Array length is not 1");
+    test_assert(strcmp((char *)unshifted, two) == 0, "Wrong unshifted element: two");
+
+    unshifted = Array_unshift(a);
+    test_assert(a->length == 0, "Array length is not 0");
+    test_assert(strcmp((char *)unshifted, one) == 0, "Wrong unshifted element: one");
 
     return NULL;
 }
@@ -104,6 +127,7 @@ int main(int argc, char *argv[])
     run_test(test_array_last);
     run_test(test_array_pop);
     run_test(test_array_shift);
+    run_test(test_array_unshift);
     run_test(test_array_free);
 
     printf("All tests passed.\n\n");

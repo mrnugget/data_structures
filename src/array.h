@@ -14,6 +14,7 @@ int Array_expand(struct dynarray *a);
 int Array_push(struct dynarray *a, void *el);
 void *Array_pop(struct dynarray *a);
 int Array_shift(struct dynarray *a, void *el);
+void *Array_unshift(struct dynarray *a);
 void Array_free(struct dynarray *a);
 void benchmark_push_pop(int times, int init_size);
 

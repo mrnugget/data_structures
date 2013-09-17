@@ -53,8 +53,8 @@ int Array_shift(struct dynarray *a, void *el)
         check(Array_expand(a) == 0, "Could not expand Array");
     }
 
-    for (i = a->length; i < 0; i--) {
-        a->elements[i + 1] = a->elements[i];
+    for (i = a->length; i > 0; i--) {
+        a->elements[i] = a->elements[i - 1];
     }
 
     a->elements[0] = el;
@@ -63,6 +63,20 @@ int Array_shift(struct dynarray *a, void *el)
     return 0;
 error:
     return -1;
+}
+
+void *Array_unshift(struct dynarray *a)
+{
+    void *el = a->elements[0];
+    int i;
+
+    for (i = 0; i < a->length; i++) {
+        a->elements[i] = a->elements[i + 1];
+    }
+
+    a->length--;
+
+    return el;
 }
 
 int Array_push(struct dynarray *a, void *el)
