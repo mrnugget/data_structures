@@ -21,6 +21,11 @@ error:
     return NULL;
 }
 
+void *Array_first(struct dynarray *a)
+{
+    return a->elements[0];
+}
+
 void *Array_last(struct dynarray *a)
 {
     return a->elements[a->length-1];
@@ -40,9 +45,29 @@ error:
     return -1;
 }
 
+int Array_shift(struct dynarray *a, void *el)
+{
+    int i;
+
+    if ((a->length + 1) >= a->capacity) {
+        check(Array_expand(a) == 0, "Could not expand Array");
+    }
+
+    for (i = a->length; i < 0; i--) {
+        a->elements[i + 1] = a->elements[i];
+    }
+
+    a->elements[0] = el;
+    a->length++;
+
+    return 0;
+error:
+    return -1;
+}
+
 int Array_push(struct dynarray *a, void *el)
 {
-    if ((a->length + 1) == a->capacity) {
+    if ((a->length + 1) >= a->capacity) {
         check(Array_expand(a) == 0, "Could not expand Array");
     }
 
