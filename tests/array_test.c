@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "test_macros.h"
-
 #include "array.h"
 
+#define test_assert_streq(A, B, M) test_assert(strcmp((char *)A, (char *)B) == 0, M);
 #define TEST_INIT_SIZE 200
 
 struct dynarray *a;
@@ -30,23 +30,23 @@ char *test_array_push()
 
     test_assert(a->length == 3, "Wrong length after push");
 
-    test_assert(strcmp((char *)a->elements[0], one) == 0, "Wrong element: one");
-    test_assert(strcmp((char *)a->elements[1], two) == 0, "Wrong element: two");
-    test_assert(strcmp((char *)a->elements[2], three) == 0, "Wrong element: three");
+    test_assert_streq(a->elements[0], one, "Wrong element: one");
+    test_assert_streq(a->elements[1], two, "Wrong element: two");
+    test_assert_streq(a->elements[2], three, "Wrong element: three");
 
     return NULL;
 }
 
 char *test_array_first()
 {
-    test_assert(strcmp((char *)Array_first(a), one) == 0, "First element is wrong");
+    test_assert_streq(Array_first(a), one, "First element is wrong");
 
     return NULL;
 }
 
 char *test_array_last()
 {
-    test_assert(strcmp((char *)Array_last(a), three) == 0, "Last element is wrong");
+    test_assert_streq(Array_last(a), three, "Last element is wrong");
 
     return NULL;
 }
@@ -55,15 +55,15 @@ char *test_array_pop()
 {
     char *popped = Array_pop(a);
     test_assert(a->length == 2, "Array length is not 2");
-    test_assert(strcmp((char *)popped, three) == 0, "Wrong popped element: three");
+    test_assert_streq(popped, three, "Wrong popped element: three");
 
     popped = Array_pop(a);
     test_assert(a->length == 1, "Array length is not 1");
-    test_assert(strcmp((char *)popped, two) == 0, "Wrong popped element: two");
+    test_assert_streq(popped, two, "Wrong popped element: two");
 
     popped = Array_pop(a);
     test_assert(a->length == 0, "Array length is not 0");
-    test_assert(strcmp((char *)popped, one) == 0, "Wrong popped element: one");
+    test_assert_streq(popped, one, "Wrong popped element: one");
 
     return NULL;
 }
@@ -74,19 +74,19 @@ char *test_array_shift()
 
     Array_shift(a, one);
     test_assert(a->length == 1, "Array length is not 1");
-    test_assert(strcmp((char *)Array_first(a), one) == 0, "Wrong first element: one");
+    test_assert_streq(Array_first(a), one, "Wrong first element: one");
 
     Array_shift(a, two);
     test_assert(a->length == 2, "Array length is not 2");
-    test_assert(strcmp((char *)Array_first(a), two) == 0, "Wrong second element: two");
+    test_assert_streq(Array_first(a), two, "Wrong second element: two");
 
     Array_shift(a, three);
     test_assert(a->length == 3, "Array length is not 3");
-    test_assert(strcmp((char *)Array_first(a), three) == 0, "Wrong second element: three");
+    test_assert_streq(Array_first(a), three, "Wrong second element: three");
 
-    test_assert(strcmp((char *)a->elements[0], three) == 0, "Wrong element: three");
-    test_assert(strcmp((char *)a->elements[1], two) == 0, "Wrong element: two");
-    test_assert(strcmp((char *)a->elements[2], one) == 0, "Wrong element: one");
+    test_assert_streq(a->elements[0], three, "Wrong element: three");
+    test_assert_streq(a->elements[1], two, "Wrong element: two");
+    test_assert_streq(a->elements[2], one, "Wrong element: one");
 
     return NULL;
 }
@@ -95,15 +95,15 @@ char *test_array_unshift()
 {
     char *unshifted = Array_unshift(a);
     test_assert(a->length == 2, "Array length is not 2");
-    test_assert(strcmp((char *)unshifted, three) == 0, "Wrong unshifted element: three");
+    test_assert_streq(unshifted, three, "Wrong unshifted element: three");
 
     unshifted = Array_unshift(a);
     test_assert(a->length == 1, "Array length is not 1");
-    test_assert(strcmp((char *)unshifted, two) == 0, "Wrong unshifted element: two");
+    test_assert_streq(unshifted, two, "Wrong unshifted element: two");
 
     unshifted = Array_unshift(a);
     test_assert(a->length == 0, "Array length is not 0");
-    test_assert(strcmp((char *)unshifted, one) == 0, "Wrong unshifted element: one");
+    test_assert_streq(unshifted, one, "Wrong unshifted element: one");
 
     return NULL;
 }
