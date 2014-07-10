@@ -19,3 +19,6 @@
 
 # random
 *.dSYM
+
+benchmarks/array_benchmark
+tests/array_test
