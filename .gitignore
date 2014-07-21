@@ -22,3 +22,4 @@
 
 benchmarks/array_benchmark
 tests/array_test
+tests/linked_list_test
