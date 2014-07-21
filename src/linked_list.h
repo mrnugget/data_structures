@@ -7,5 +7,6 @@ struct ll_node {
 };
 
 struct ll_node *LL_new();
+void LL_free(struct ll_node *head);
 
 #endif

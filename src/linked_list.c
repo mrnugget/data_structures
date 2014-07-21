@@ -17,3 +17,9 @@ error:
     if (n) free(n);
     return NULL;
 }
+
+void LL_free(struct ll_node *head)
+{
+    free(head);
+    head = NULL;
+}

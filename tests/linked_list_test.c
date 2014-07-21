@@ -21,6 +21,13 @@ char *test_linked_list_new()
     return NULL;
 }
 
+char *test_linked_list_free()
+{
+    LL_free(head);
+
+    return NULL;
+}
+
 int main(int argc, char *argv[])
 {
     printf("Running tests...\n");
@@ -28,6 +35,7 @@ int main(int argc, char *argv[])
     test_setup();
 
     run_test(test_linked_list_new);
+    run_test(test_linked_list_free);
 
     printf("All tests passed.\n\n");
 
