@@ -34,21 +34,19 @@ error:
 
 struct ll_node *LL_last(struct ll_node *head)
 {
-    struct ll_node *last = head;
-    while (last->next) {
-        last = last->next;
+    while (head->next) {
+        head = head->next;
     }
-    return last;
+    return head;
 }
 
 int LL_length(struct ll_node *head)
 {
     int i = 1;
-    struct ll_node *curr = head;
 
-    while (curr->next) {
+    while (head->next) {
         i++;
-        curr = curr->next;
+        head = head->next;
     }
 
     return i;
@@ -56,12 +54,11 @@ int LL_length(struct ll_node *head)
 
 void LL_free(struct ll_node *head)
 {
-    struct ll_node *curr = head;
     struct ll_node *prev;
 
-    while (curr->next) {
-        prev = curr;
-        curr = prev->next;
+    while (head->next) {
+        prev = head;
+        head = prev->next;
         free(prev);
         prev = NULL;
     }
