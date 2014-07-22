@@ -6,8 +6,6 @@
 #include "test_macros.h"
 #include "linked_list.h"
 
-#define test_assert_streq(A, B, M) test_assert(strcmp((char *)A, (char *)B) == 0, M);
-
 struct ll_node *head;
 char *val1 = "foobar";
 

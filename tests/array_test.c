@@ -6,7 +6,6 @@
 #include "test_macros.h"
 #include "array.h"
 
-#define test_assert_streq(A, B, M) test_assert(strcmp((char *)A, (char *)B) == 0, M);
 #define TEST_INIT_SIZE 200
 
 struct dynarray *a;
