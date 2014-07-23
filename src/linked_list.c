@@ -18,7 +18,7 @@ error:
     return NULL;
 }
 
-struct ll_node *LL_add(struct ll_node *head, void *val)
+struct ll_node *LL_add_tail(struct ll_node *head, void *val)
 {
     struct ll_node *last = LL_last(head);
     struct ll_node *n = LL_new(val);
@@ -30,6 +30,16 @@ struct ll_node *LL_add(struct ll_node *head, void *val)
 
 error:
     return NULL;
+}
+
+void LL_add_head(struct ll_node **headp, void *val)
+{
+    struct ll_node *n = LL_new(val);
+    if (n == NULL) return;
+
+    n->next = *headp;
+    *headp = n;
+    return;
 }
 
 struct ll_node *LL_last(struct ll_node *head)

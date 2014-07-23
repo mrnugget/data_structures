@@ -8,7 +8,8 @@ struct ll_node {
 
 struct ll_node *LL_new();
 void LL_free(struct ll_node *head);
-struct ll_node *LL_add(struct ll_node *head, void *val);
+struct ll_node *LL_add_tail(struct ll_node *head, void *val);
+void LL_add_head(struct ll_node **head, void *val);
 struct ll_node *LL_last(struct ll_node *head);
 int LL_length(struct ll_node *head);
 
