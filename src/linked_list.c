@@ -65,6 +65,27 @@ struct ll_node *LL_find(struct ll_node *head, void *val)
     return found;
 }
 
+void LL_delete(struct ll_node **head, void *val)
+{
+    struct ll_node *prev, *curr;
+    curr = *head;
+
+    while (curr) {
+        if (curr->val == val) {
+            if (curr == *head) {
+                *head = curr->next;
+            } else {
+                prev->next = curr->next;
+            }
+
+            free(curr);
+            return;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+}
+
 int LL_length(struct ll_node *head)
 {
     int i = 1;

@@ -76,6 +76,25 @@ char *test_linked_list_length()
     return NULL;
 }
 
+char *test_linked_list_delete()
+{
+    int length = LL_length(head);
+
+    // Deleting the last node
+    LL_delete(&head, val3);
+    test_assert(LL_length(head) == (length - 1), "Wrong length after deletion");
+
+    struct ll_node *last = LL_last(head);
+    test_assert(last->val != val3, "linked list last node has wrong val after deletion");
+
+    // Deleting the head node
+    LL_delete(&head, val4);
+    test_assert(LL_length(head) == (length - 2), "Wrong length after deletion");
+    test_assert(head->val != val4, "linked list head node has wrong val after deletion");
+
+    return NULL;
+}
+
 char *test_linked_list_free()
 {
     LL_free(head);
@@ -95,6 +114,7 @@ int main(int argc, char *argv[])
     run_test(test_linked_list_add_head);
     run_test(test_linked_list_find);
     run_test(test_linked_list_length);
+    run_test(test_linked_list_delete);
     run_test(test_linked_list_free);
 
     printf("All tests passed.\n\n");
