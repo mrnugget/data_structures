@@ -21,6 +21,11 @@ in C.
 
 `make clean && make benchmark && ./benchmarks/array_benchmark`
 
+## Credit
+
+A lot of this, especially the debug and test macros and the DArray
+implementation, is inspired by Zed Shaw's Learn C The Hard Way. Thanks!
+
 ## License
 
 MIT. Do what you want with this.
