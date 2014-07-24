@@ -55,6 +55,19 @@ char *test_linked_list_add_head()
     return NULL;
 }
 
+char *test_linked_list_find()
+{
+    struct ll_node *found = LL_find(head, val2);
+
+    test_assert(found, "Did not find node");
+    test_assert_streq(found->val, val2, "linked list found node has wrong val");
+
+    found = LL_find(head, "herpderp");
+    test_assert(found == NULL, "Found wrong node");
+
+    return NULL;
+}
+
 char *test_linked_list_length()
 {
     int length = LL_length(head);
@@ -80,6 +93,7 @@ int main(int argc, char *argv[])
     run_test(test_linked_list_add_tail);
     run_test(test_linked_list_last);
     run_test(test_linked_list_add_head);
+    run_test(test_linked_list_find);
     run_test(test_linked_list_length);
     run_test(test_linked_list_free);
 

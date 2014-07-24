@@ -50,6 +50,21 @@ struct ll_node *LL_last(struct ll_node *head)
     return head;
 }
 
+struct ll_node *LL_find(struct ll_node *head, void *val)
+{
+    struct ll_node *found = NULL;
+
+    while(head->next) {
+        if (head->val == val) {
+            found = head;
+            break;
+        }
+        head = head->next;
+    }
+
+    return found;
+}
+
 int LL_length(struct ll_node *head)
 {
     int i = 1;
