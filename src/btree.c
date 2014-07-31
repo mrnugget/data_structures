@@ -19,7 +19,12 @@ struct btree_node *Btree_new(void *val)
 
 void Btree_free(struct btree_node *root)
 {
-    // TODO: this is just for testing purposes here. we need to actually free
-    // the whole tree
+    if (root->left) {
+        Btree_free(root->left);
+    }
+    if (root->right) {
+        Btree_free(root->right);
+    }
+
     free(root);
 }
