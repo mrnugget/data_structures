@@ -1,4 +1,4 @@
-OBJECTS=src/array.o src/linked_list.o
+OBJECTS=src/array.o src/linked_list.o src/btree.o
 
 CFLAGS=-g -Wall -O3 -I ./src
 LDLIBS=
@@ -11,7 +11,10 @@ array_test: ./tests/array_test.c $(OBJECTS)
 linked_list_test: ./tests/linked_list_test.c $(OBJECTS)
 	$(CC) $(CFLAGS) -o ./tests/$@ $(OBJECTS) ./tests/$@.c
 
-test: array_test linked_list_test
+btree_test: ./tests/btree_test.c $(OBJECTS)
+	$(CC) $(CFLAGS) -o ./tests/$@ $(OBJECTS) ./tests/$@.c
+
+test: array_test linked_list_test btree_test
 
 # BENCHMARKS
 array_benchmark: $(OBJECTS)
