@@ -18,13 +18,14 @@ int btree_compare_int(int *a, int *b)
     return 0;
 }
 
-struct btree_node *Btree_new(void *val)
+struct btree_node *Btree_new(void *key, void *val)
 {
     struct btree_node *n = malloc(sizeof(struct btree_node));
     if (n == NULL) {
         return NULL;
     }
 
+    n->key = key;
     n->val = val;
     n->left = NULL;
     n->right = NULL;
@@ -32,9 +33,9 @@ struct btree_node *Btree_new(void *val)
     return n;
 }
 
-struct btree_node *Btree_insert(struct btree_node *root, void *val)
+struct btree_node *Btree_insert(struct btree_node *root, void *key, void *val)
 {
-    struct btree_node *new = Btree_new(val);
+    struct btree_node *new = Btree_new(key, val);
     if (new == NULL) {
         return NULL;
     }
@@ -46,7 +47,7 @@ struct btree_node *Btree_insert(struct btree_node *root, void *val)
 
 static void Btree_add_node(struct btree_node *root, struct btree_node *new)
 {
-    int cmp = BTREE_DEFAULT_COMPARE(root->val, new->val);
+    int cmp = BTREE_DEFAULT_COMPARE(root->key, new->key);
     if (cmp == 1) {
         if (root->left) {
             Btree_add_node(root->left, new);
