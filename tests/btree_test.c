@@ -89,6 +89,13 @@ char *test_btree_insert()
     return NULL;
 }
 
+char *test_btree_count()
+{
+    test_assert(Btree_count(root) == 5, "count is wrong");
+
+    return NULL;
+}
+
 char *test_btree_free()
 {
     Btree_free(root);
@@ -104,6 +111,7 @@ int main(int argc, char *argv[])
 
     run_test(test_btree_new);
     run_test(test_btree_insert);
+    run_test(test_btree_count);
     run_test(test_btree_free);
 
     printf("All tests passed.\n\n");

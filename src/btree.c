@@ -45,6 +45,17 @@ struct btree_node *Btree_insert(struct btree_node *root, void *key, void *val)
     return new;
 }
 
+int Btree_count(struct btree_node *node)
+{
+    int c = 0;
+
+    if (node) c++;
+    if (node->left) c += Btree_count(node->left);
+    if (node->right) c += Btree_count(node->right);
+
+    return c;
+}
+
 static void Btree_add_node(struct btree_node *root, struct btree_node *new)
 {
     int cmp = BTREE_DEFAULT_COMPARE(root->key, new->key);
