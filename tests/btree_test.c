@@ -96,6 +96,28 @@ char *test_btree_count()
     return NULL;
 }
 
+char *test_btree_find()
+{
+    struct btree_node *result;
+
+    result = Btree_find(root, &key5);
+    test_assert_streq(result->val, val5, "node with key5 is not correct");
+
+    result = Btree_find(root, &key4);
+    test_assert_streq(result->val, val4, "node with key4 is not correct");
+
+    result = Btree_find(root, &key3);
+    test_assert_streq(result->val, val3, "node with key3 is not correct");
+
+    result = Btree_find(root, &key2);
+    test_assert_streq(result->val, val2, "node with key2 is not correct");
+
+    result = Btree_find(root, &key1);
+    test_assert_streq(result->val, val1, "node with key1 is not correct");
+
+    return NULL;
+}
+
 char *test_btree_free()
 {
     Btree_free(root);
@@ -112,6 +134,7 @@ int main(int argc, char *argv[])
     run_test(test_btree_new);
     run_test(test_btree_insert);
     run_test(test_btree_count);
+    run_test(test_btree_find);
     run_test(test_btree_free);
 
     printf("All tests passed.\n\n");
