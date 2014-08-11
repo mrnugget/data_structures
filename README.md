@@ -7,6 +7,7 @@ in C.
 
 * Dynamic Array
 * Linked List
+* BTree
 
 ## Compiling with tests
 
@@ -16,6 +17,7 @@ in C.
 
 `make clean && make test && ./tests/array_test`
 `make clean && make test && ./tests/linked_list_test`
+`make clean && make test && ./tests/btree_test`
 
 ## Running the benchmarks
 
