@@ -47,18 +47,19 @@ struct btree_node *Btree_insert(struct btree_node *root, void *key, void *val)
 
 struct btree_node *Btree_find(struct btree_node *root, void *key)
 {
+    int cmp = BTREE_DEFAULT_COMPARE(root->key, key);
     struct btree_node *result = NULL;
 
-    if (BTREE_DEFAULT_COMPARE(root->key, key) == 0) {
+    if (cmp == 0) {
         return root;
     }
 
-    if (root->left) {
+    if (cmp == 1 && root->left) {
         result = Btree_find(root->left, key);
         if (result) return result;
     }
 
-    if (root->right) {
+    if (cmp == -1 && root->right) {
         result = Btree_find(root->right, key);
         if (result) return result;
     }
