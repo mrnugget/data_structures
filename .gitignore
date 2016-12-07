@@ -22,5 +22,6 @@
 
 benchmarks/array_benchmark
 tests/array_test
+tests/stack_test
 tests/linked_list_test
 tests/btree_test
