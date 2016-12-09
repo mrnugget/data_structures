@@ -3,8 +3,6 @@
 
 #include "stack.h"
 
-#define INITIAL_SIZE 300
-
 struct stack *Stack_new()
 {
     struct stack *s = malloc(sizeof(struct stack));
@@ -12,13 +10,7 @@ struct stack *Stack_new()
         return NULL;
     }
 
-    void **elements = malloc(sizeof(void*)*INITIAL_SIZE);
-    if (elements == NULL) {
-        free(s);
-        return NULL;
-    }
-
-    s->elements = elements;
+    s->top = s->elements;
     s->sp = 0;
 
     return s;
@@ -26,20 +18,18 @@ struct stack *Stack_new()
 
 int Stack_push(struct stack *s, void *el)
 {
-    s->elements[s->sp++] = el;
-
+    *s->top = el;
+    s->top++;
     return 0;
 }
 
 void *Stack_pop(struct stack *s)
 {
-    void *el = s->elements[s->sp-1];
-    s->sp--;
+    void *el = *(--s->top);
     return el;
 }
 
 void Stack_free(struct stack *s)
 {
-    free(s->elements);
     free(s);
 }
